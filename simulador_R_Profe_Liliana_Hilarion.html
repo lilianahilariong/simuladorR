@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>R sin llorar | Profe Liliana Hilarión</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;font-family:Arial,Helvetica,sans-serif;color:#17324d;
+  background:
+    radial-gradient(circle at 8% 10%,rgba(255,100,45,.13),transparent 22%),
+    radial-gradient(circle at 92% 16%,rgba(245,146,34,.15),transparent 24%),
+    linear-gradient(135deg,#eef4f8,#fff);
+  min-height:100vh;overflow-x:hidden
+}
+.container{width:min(1050px,94%);margin:26px auto}
+.float{position:fixed;z-index:-1;opacity:.13;font-size:48px;animation:float 4s ease-in-out infinite}
+.f1{top:10%;left:2%}.f2{top:58%;right:2%;animation-delay:1s}.f3{top:82%;left:4%;animation-delay:2s}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-18px) rotate(5deg)}}
+.hero{
+  position:relative;overflow:hidden;background:linear-gradient(135deg,#102f4b,#176b87);
+  color:#fff;border-radius:26px;padding:30px;box-shadow:0 14px 35px rgba(15,50,80,.2)
+}
+.hero::after{content:"R";position:absolute;right:20px;top:-40px;font-size:190px;font-weight:bold;opacity:.06}
+.hero-grid{display:grid;grid-template-columns:1fr 180px;gap:20px;align-items:center}
+.hero h1{margin:0;font-size:40px}.hero h2{font-size:18px;font-weight:normal;line-height:1.45;max-width:700px}
+.tag{display:inline-block;background:#f28c28;padding:9px 16px;border-radius:999px;font-weight:bold;margin-top:10px}
+.teacher{text-align:center}.teacher .face{font-size:82px;animation:wobble 3s ease-in-out infinite}
+.teacher .speech{background:white;color:#153c5c;border-radius:14px;padding:8px;font-size:12px;font-weight:bold}
+@keyframes wobble{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+.flames{text-align:center;font-size:24px;letter-spacing:8px;margin-top:10px}
+.status{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.card{background:#fff;border-radius:18px;padding:16px;box-shadow:0 6px 20px rgba(0,0,0,.06)}
+.small{font-size:12px;color:#718291;text-transform:uppercase;letter-spacing:1px}
+.big{font-size:22px;font-weight:bold;margin-top:6px}
+.progress-area{background:#fff;margin-top:14px;border-radius:17px;padding:15px 20px;box-shadow:0 5px 18px rgba(0,0,0,.05)}
+.progress-text{display:flex;justify-content:space-between;font-size:14px;margin-bottom:8px}
+.track{height:11px;background:#e3eaf0;border-radius:999px;overflow:hidden}
+.bar{height:100%;width:0;background:linear-gradient(90deg,#ff7433,#f7a429);transition:.35s}
+.game-grid{display:grid;grid-template-columns:155px 1fr;gap:15px;margin-top:18px}
+.mascot-card{
+  background:linear-gradient(180deg,#fff0e8,#fff);border-radius:22px;padding:18px 12px;text-align:center;
+  box-shadow:0 8px 24px rgba(0,0,0,.06)
+}
+.mascot{font-size:76px;display:block;animation:bounce 2.2s ease-in-out infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.mascot-name{font-weight:bold;color:#ce4e27;margin-top:8px}
+.mascot-message{font-size:12px;color:#64727e;line-height:1.45;margin-top:8px}
+.question-card{background:#fff;border-radius:22px;padding:27px;box-shadow:0 10px 30px rgba(0,0,0,.07)}
+.topic{color:#ee7c26;font-size:13px;font-weight:bold;text-transform:uppercase;letter-spacing:1px}
+.question{font-size:23px;line-height:1.4;margin:10px 0 22px}
+.answers{display:grid;gap:11px}
+.answer-btn{
+  width:100%;padding:15px 17px;border:2px solid #dfe7ed;background:#fafcfd;border-radius:14px;
+  font-size:16px;font-family:Consolas,Monaco,monospace;color:#18354f;cursor:pointer;text-align:left;transition:.2s
+}
+.answer-btn:hover:not(:disabled){transform:translateY(-2px);border-color:#247597;background:#f0f8fb}
+.answer-btn.correct{background:#eaf8f2;border-color:#18a66f;color:#146144}
+.answer-btn.wrong{background:#fff0f0;border-color:#d95757;color:#9c3030}
+.actions{margin-top:20px;display:flex;gap:10px;flex-wrap:wrap}
+.btn{border:none;border-radius:12px;padding:12px 18px;font-size:15px;font-weight:bold;cursor:pointer}
+.btn-hint{background:#fff3df;color:#99540c;border:1px solid #ffd197}
+.btn-next{background:#143d5c;color:#fff}.btn:disabled{opacity:.45;cursor:not-allowed}
+.hint-box{display:none;margin-top:18px;padding:16px;background:#fff9e7;border-left:6px solid #f6ad33;border-radius:12px}
+.feedback{display:none;margin-top:20px}
+.good-box{background:#eaf9f3;border-left:6px solid #1aa16b;border-radius:14px;padding:18px}
+.bad-box{background:#fff0ee;border-left:6px solid #d84c3d;border-radius:14px;padding:20px}
+.roast{font-size:19px;font-weight:bold;color:#a6362d;line-height:1.4}
+.code{background:#15212b;color:#8fe7ae;padding:13px;border-radius:10px;font-family:Consolas,monospace;margin-top:10px;overflow-x:auto}
+.rule{margin-top:18px;padding:20px;display:flex;gap:18px;align-items:center;border-radius:20px;background:#153c5c;color:#fff}
+.rule strong{color:#ffaf39}.rule-icon{font-size:48px}
+.final{display:none;margin-top:20px;padding:35px;background:#fff;border-radius:24px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.final-icon{font-size:70px}.final-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:25px 0}
+.final-card{background:#f4f8fb;border-radius:16px;padding:18px}.final-number{color:#17708f;font-size:30px;font-weight:bold;margin-top:5px}
+.restart{padding:13px 20px;border:none;border-radius:12px;background:#ed7e26;color:#fff;font-size:16px;font-weight:bold;cursor:pointer}
+footer{text-align:center;padding:25px;color:#758694;font-size:13px}
+.shake{animation:shake .45s}@keyframes shake{0%{transform:translateX(0)}25%{transform:translateX(-9px)}50%{transform:translateX(9px)}75%{transform:translateX(-6px)}100%{transform:translateX(0)}}
+.start-screen{
+  background:#fff;margin-top:18px;border-radius:24px;padding:30px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.07)
+}
+.start-screen h3{font-size:28px;margin:6px 0 10px}.start-devil{font-size:78px}.start-btn{
+  margin-top:15px;border:none;background:#ed7e26;color:#fff;padding:14px 22px;border-radius:14px;font-weight:bold;font-size:17px;cursor:pointer
+}
+.hidden{display:none!important}
+@media(max-width:700px){
+  .hero-grid{grid-template-columns:1fr}.teacher{display:none}.status,.final-grid{grid-template-columns:1fr}
+  .game-grid{grid-template-columns:1fr}.mascot-card{display:flex;gap:15px;align-items:center;text-align:left}.mascot{font-size:52px}
+  .question{font-size:20px}.hero h1{font-size:31px}
+}
+</style>
+</head>
+<body>
+
+<div class="float f1">😈</div>
+<div class="float f2">👿</div>
+<div class="float f3">🔥</div>
+
+<div class="container">
+
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <h1>😈 R SIN LLORAR</h1>
+      <h2>Simulador básico para aprender R, equivocarse dignamente y sobrevivir a las observaciones de la profesora.</h2>
+      <div class="tag">👩‍🏫 Profe Liliana Hilarión</div>
+    </div>
+    <div class="teacher">
+      <div class="face">👩‍🏫</div>
+      <div class="speech">“Yo expliqué eso hace tres preguntas.”</div>
+    </div>
+  </div>
+  <div class="flames">🔥 🔥 😈 🔥 🔥</div>
+</section>
+
+<section id="startScreen" class="start-screen">
+  <div class="start-devil">😈</div>
+  <h3>¿Crees que sabes R?</h3>
+  <p><strong>Qué ternura.</strong> Demuéstralo.</p>
+  <p>Hay pocas pistas, puntos en juego y Ruperto está esperando tu primer error.</p>
+  <button id="startButton" class="start-btn">🔥 EMPEZAR EL SUFRIMIENTO</button>
+</section>
+
+<div id="quizArea" class="hidden">
+  <section class="status">
+    <div class="card"><div class="small">Puntaje</div><div class="big" id="score">⭐ 0</div></div>
+    <div class="card"><div class="small">Estado académico</div><div class="big" id="level">🐣 Criatura de Excel</div></div>
+    <div class="card"><div class="small">Paciencia de Liliana</div><div class="big" id="lives">❤️ ❤️ ❤️</div></div>
+  </section>
+
+  <section class="progress-area">
+    <div class="progress-text"><span id="counter">Pregunta 1 de 10</span><span id="errors">Errores: 0</span></div>
+    <div class="track"><div class="bar" id="progressBar"></div></div>
+  </section>
+
+  <section class="game-grid" id="gameArea">
+    <aside class="mascot-card" id="mascotCard">
+      <div><span class="mascot" id="mascot">😈</span></div>
+      <div>
+        <div class="mascot-name">Ruperto</div>
+        <div class="mascot-message" id="mascotMessage">Estoy esperando pacientemente tu primer error.</div>
+      </div>
+    </aside>
+
+    <section class="question-card" id="game">
+      <div class="topic" id="topic"></div>
+      <div class="question" id="question"></div>
+      <div class="answers" id="answers"></div>
+      <div class="actions">
+        <button class="btn btn-hint" id="hintButton">💡 Pista</button>
+        <button class="btn btn-next" id="nextButton" disabled>Siguiente reto →</button>
+      </div>
+      <div class="hint-box" id="hintBox"></div>
+      <div class="feedback" id="feedback"></div>
+    </section>
+  </section>
+
+  <section class="rule" id="teacherRule">
+    <div class="rule-icon">👩‍🏫</div>
+    <div>
+      <strong>REGLA DE LA PROFE LILIANA:</strong><br><br>
+      Las pistas son escasas. Aquí se viene a pensar. Equivocarse está permitido.
+      <strong>Equivocarse con absoluta seguridad y después culpar a R ya es otra cosa.</strong>
+    </div>
+    <div class="rule-icon">😈</div>
+  </section>
+</div>
+
+<section class="final" id="finalScreen">
+  <div class="final-icon" id="finalIcon">🎓</div>
+  <h2>Se acabó el parcial</h2>
+  <p id="finalMessage"></p>
+  <div class="final-grid">
+    <div class="final-card">Puntaje<div class="final-number" id="finalScore">0</div></div>
+    <div class="final-card">Aciertos<div class="final-number" id="finalCorrect">0</div></div>
+    <div class="final-card">Errores<div class="final-number" id="finalErrors">0</div></div>
+  </div>
+  <button class="restart" id="restartButton">😈 Volver al sufrimiento</button>
+</section>
+
+<footer>
+  😈 R sin llorar · Simulador educativo<br>
+  Profe Liliana Hilarión 👩‍🏫<br><br>
+  <em>“La práctica hace al programador. Copiar y pegar sin leer hace otra cosa.”</em>
+</footer>
+
+</div>
+
+<script>
+const questions = [
+ {topic:"Vectores",question:"Necesitas guardar los números 10, 20 y 30 en un objeto llamado x. ¿Cuál código es correcto?",answers:["x <- c(10, 20, 30)","x <- [10, 20, 30]","x <- vector(10; 20; 30)"],correct:0,hint:"R combina valores usando c(). Hasta ahí llega mi generosidad.",explanation:"c() permite combinar varios valores para crear un vector."},
+ {topic:"Paquetes",question:"Nunca has utilizado dplyr en este computador. ¿Cómo lo instalas?",answers:["library(dplyr)",'install.packages("dplyr")',"download(dplyr)"],correct:1,hint:null,explanation:"install.packages() descarga e instala un paquete."},
+ {topic:"Paquetes",question:"dplyr ya está instalado. ¿Cómo lo cargas para utilizarlo?",answers:["library(dplyr)",'install.packages("dplyr")',"open(dplyr)"],correct:0,hint:null,explanation:"library() carga un paquete previamente instalado."},
+ {topic:"Exploración",question:"Te entregaron una base llamada datos y quieres conocer su estructura. ¿Qué utilizas?",answers:["str(datos)","head(datos)","mean(datos)"],correct:0,hint:"Structure → str(). Más no puedo hacer por esta relación pedagógica.",explanation:"str() permite revisar la estructura y los tipos de variables."},
+ {topic:"Exploración",question:"Quieres mirar únicamente las primeras filas de la base. ¿Qué utilizas?",answers:["head(datos)","first(datos)","look(datos)"],correct:0,hint:null,explanation:"head() muestra las primeras filas de una base."},
+ {topic:"Resumen",question:"Quieres obtener un resumen rápido de tus variables. ¿Cuál función utilizas?",answers:["summary(datos)","resume(datos)","statistics(datos)"],correct:0,hint:null,explanation:"summary() genera un resumen general de las variables."},
+ {topic:"Estadística",question:"Tienes edad <- c(20, 30, 40). ¿Cómo calculas el promedio?",answers:["mean(edad)","average(edad)","sum(edad)"],correct:0,hint:"Promedio = media. Media en inglés = mean.",explanation:"mean() calcula la media aritmética."},
+ {topic:"Dimensiones",question:"¿Qué función permite conocer cuántas filas y columnas tiene una base?",answers:["dim(datos)","size(datos)","length(datos)"],correct:0,hint:null,explanation:"dim() devuelve las dimensiones: filas y columnas."},
+ {topic:"Variables",question:"Quieres conocer los nombres de las columnas de datos. ¿Qué utilizas?",answers:["names(datos)","titles(datos)","columns(datos)"],correct:0,hint:null,explanation:"names() permite obtener los nombres de las variables."},
+ {topic:"Filtrado",question:"Con dplyr quieres conservar solamente personas mayores de 18 años.",answers:["filter(datos, edad > 18)","select(datos, edad > 18)","mean(datos, edad > 18)"],correct:0,hint:"La función para filtrar se llama filter(). El departamento creativo de R descansó ese día.",explanation:"filter() conserva las filas que cumplen una condición."}
+];
+
+const roasts = [
+"😈 Ruperto dice: espectacular. Tres opciones y conseguiste encontrar la incorrecta.",
+"😐 La Profe Liliana acaba de mirar por encima de las gafas. Mala señal.",
+"📉 Esa respuesta tiene la estabilidad metodológica de un Excel con 28 celdas combinadas.",
+"😬 R funciona perfectamente. Lamentablemente no podemos afirmar lo mismo de esa respuesta.",
+"🫠 La respuesta correcta estaba ahí tranquilamente y tú decidiste explorar otros horizontes.",
+"🧠 El conocimiento tocó la puerta. Parece que nadie estaba en casa.",
+"🤨 Incorrecto. Pero admiro profundamente la confianza con la que lo hiciste.",
+"🚨 Se detectó programación basada exclusivamente en intuición, esperanza y energía positiva.",
+"👿 Ruperto estaba esperando este momento desde que empezó el simulador.",
+"📚 Excelente momento para descubrir una tecnología revolucionaria llamada leer la pregunta.",
+"😮 R acaba de solicitar oficialmente cambio de estudiante.",
+"🪦 Aquí descansa una respuesta que jamás debió ser seleccionada.",
+"🙃 La seguridad estuvo en 100 %. La precisión estuvo de vacaciones.",
+"🤦‍♀️ La Profe Liliana necesita unos segundos para procesar lo que acaba de ocurrir.",
+"💀 Excel acaba de escribir preguntando si quieres volver."
+];
+
+const celebrations = [
+"😇 ¡Correcto! Por un instante la Profe Liliana recuperó la fe en la humanidad.",
+"🎉 Muy bien. Ruperto está decepcionado porque no pudo burlarse.",
+"😎 Correcto. Excel acaba de ponerse ligeramente nervioso.",
+"👏 Bien. La Profe Liliana asiente discretamente. No exageremos la celebración.",
+"🧠 ¡Eso! Hay actividad cerebral confirmada."
+];
+
+let currentQuestion=0,score=0,correctAnswers=0,errorCount=0,patience=3,answered=false,hintUsed=false;
+
+const q=document.getElementById("question");
+const topic=document.getElementById("topic");
+const answers=document.getElementById("answers");
+const hintButton=document.getElementById("hintButton");
+const nextButton=document.getElementById("nextButton");
+const hintBox=document.getElementById("hintBox");
+const feedback=document.getElementById("feedback");
+const mascot=document.getElementById("mascot");
+const mascotMessage=document.getElementById("mascotMessage");
+const mascotCard=document.getElementById("mascotCard");
+
+function getLevel(){
+  if(currentQuestion<=2)return "🐣 Criatura de Excel";
+  if(currentQuestion<=5)return "🤓 R ya sabe tu nombre";
+  if(currentQuestion<=8)return "😎 Excel está nervioso";
+  return "🔥 Casi programador/a";
+}
+
+function showQuestion(){
+  answered=false;hintUsed=false;
+  const data=questions[currentQuestion];
+  topic.textContent=data.topic;
+  q.textContent=data.question;
+  answers.innerHTML="";
+  feedback.style.display="none";
+  hintBox.style.display="none";
+  nextButton.disabled=true;
+  mascot.textContent="😈";
+  mascotMessage.textContent="Ruperto está observando. No le des material.";
+  if(data.hint){
+    hintButton.disabled=false;
+    hintButton.textContent="💡 Pista (-25 puntos)";
+  }else{
+    hintButton.disabled=true;
+    hintButton.textContent="🔒 Sin pista. Piense.";
+  }
+  data.answers.forEach((text,index)=>{
+    const b=document.createElement("button");
+    b.className="answer-btn";
+    b.textContent=text;
+    b.addEventListener("click",()=>selectAnswer(index,b));
+    answers.appendChild(b);
+  });
+  updateInterface();
+}
+
+function selectAnswer(selectedIndex,selectedButton){
+  if(answered)return;
+  answered=true;
+  const data=questions[currentQuestion];
+  const buttons=document.querySelectorAll(".answer-btn");
+  buttons.forEach((b,index)=>{
+    b.disabled=true;
+    if(index===data.correct)b.classList.add("correct");
+  });
+
+  if(selectedIndex===data.correct){
+    correctAnswers++;
+    const points=hintUsed?75:100;
+    score+=points;
+    const msg=celebrations[Math.floor(Math.random()*celebrations.length)];
+    mascot.textContent="😇";
+    mascotMessage.textContent="Correcto. Qué aburrido. Ruperto quería drama.";
+    feedback.innerHTML=`<div class="good-box"><strong>${msg}</strong><br><br>${data.explanation}<br><br><strong>+${points} puntos</strong></div>`;
+  }else{
+    errorCount++;
+    patience=Math.max(0,patience-1);
+    score=Math.max(0,score-20);
+    selectedButton.classList.add("wrong");
+    const roast=roasts[Math.floor(Math.random()*roasts.length)];
+    mascot.textContent="👿";
+    mascotMessage.textContent="JA JA JA. Tenemos material nuevo para la clase.";
+    mascotCard.classList.add("shake");
+    setTimeout(()=>mascotCard.classList.remove("shake"),500);
+    feedback.innerHTML=`<div class="bad-box"><div class="roast">${roast}</div><br><strong>Respuesta correcta:</strong><div class="code">${data.answers[data.correct]}</div><br>${data.explanation}<br><br><small>🔥 -20 puntos &nbsp;·&nbsp; 👩‍🏫 Paciencia docente reducida.</small></div>`;
+  }
+  feedback.style.display="block";
+  hintButton.disabled=true;
+  nextButton.disabled=false;
+  updateInterface();
+}
+
+hintButton.addEventListener("click",()=>{
+  const data=questions[currentQuestion];
+  if(!data.hint||hintUsed||answered)return;
+  hintUsed=true;
+  score=Math.max(0,score-25);
+  mascot.textContent="🤫";
+  mascotMessage.textContent="No diré que pediste ayuda. Bueno... quizá sí.";
+  hintBox.innerHTML=`<strong>💡 Pista secreta:</strong><br><br>${data.hint}`;
+  hintBox.style.display="block";
+  hintButton.disabled=true;
+  updateInterface();
+});
+
+nextButton.addEventListener("click",()=>{
+  if(!answered)return;
+  currentQuestion++;
+  if(currentQuestion>=questions.length)finishGame();
+  else showQuestion();
+});
+
+function updateInterface(){
+  document.getElementById("score").textContent="⭐ "+score;
+  document.getElementById("level").textContent=getLevel();
+  let hearts="";
+  for(let i=0;i<3;i++)hearts+=i<patience?"❤️ ":"🖤 ";
+  document.getElementById("lives").textContent=hearts;
+  document.getElementById("errors").textContent="Errores: "+errorCount;
+  document.getElementById("counter").textContent="Pregunta "+(currentQuestion+1)+" de "+questions.length;
+  document.getElementById("progressBar").style.width=((currentQuestion/questions.length)*100)+"%";
+}
+
+function finishGame(){
+  document.getElementById("progressBar").style.width="100%";
+  document.getElementById("quizArea").classList.add("hidden");
+  document.getElementById("finalScreen").style.display="block";
+  document.getElementById("finalScore").textContent=score;
+  document.getElementById("finalCorrect").textContent=correctAnswers+"/"+questions.length;
+  document.getElementById("finalErrors").textContent=errorCount;
+  let msg="",icon="";
+  if(correctAnswers===questions.length){
+    icon="😇";msg="Perfecto. 10 de 10. La Profe Liliana no encontró nada que criticar. Ruperto solicita revisión del examen.";
+  }else if(correctAnswers>=8){
+    icon="😎";msg="Muy bien. Puedes retirarte con dignidad académica. R empieza a respetarte.";
+  }else if(correctAnswers>=6){
+    icon="🙂";msg="Aprobaste. No sobró demasiado, pero tampoco será necesario convocar comité académico.";
+  }else if(correctAnswers>=4){
+    icon="😈";msg="Hay potencial. Está profundamente escondido, pero la Profe Liliana insiste en que debe existir.";
+  }else{
+    icon="👿";msg="Ruperto ganó. La única opción disponible es volver a intentarlo.";
+  }
+  document.getElementById("finalIcon").textContent=icon;
+  document.getElementById("finalMessage").textContent=msg;
+}
+
+document.getElementById("startButton").addEventListener("click",()=>{
+  document.getElementById("startScreen").classList.add("hidden");
+  document.getElementById("quizArea").classList.remove("hidden");
+  showQuestion();
+});
+
+document.getElementById("restartButton").addEventListener("click",()=>{
+  currentQuestion=0;score=0;correctAnswers=0;errorCount=0;patience=3;answered=false;hintUsed=false;
+  document.getElementById("finalScreen").style.display="none";
+  document.getElementById("quizArea").classList.remove("hidden");
+  showQuestion();
+});
+</script>
+</body>
+</html>
